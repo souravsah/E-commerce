@@ -1,0 +1,15 @@
+.react-responsive-modal-modal {
+    /* max-width: 1000px; */
+    width: 800px;
+    /* height: 150px;
+    top: 0;
+    overflow-y: hidden;
+    padding: 0; */
+  }
+
+@media(max-width:650px){
+    .react-responsive-modal-modal {
+ 
+    width: 200px;
+    }
+}
