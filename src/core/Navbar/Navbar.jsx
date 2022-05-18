@@ -16,6 +16,9 @@ import Imageslider from "../../components/Imageslider/Imageslider";
 import Modal from 'react-modal';
 import Cart from "../../components/AddtoCart/Cart"
 import Login from "../Login/Login"
+import { useDispatch } from "react-redux";
+import { getImageSliderData, getnavadData, getProductData } from "../../redux/HomePage/HomePage.action";
+import { useSelector } from "react-redux";
 
 
 const customStyles = {
@@ -108,23 +111,20 @@ function afterOpenModal3() {
 function closeModal3() {
   setIsOpen3(false);
 }
-
-
-
-
-
-
-
-
   //hii
-  let [Addata,setAddata]= useState([])
+  let [Addata,setAddata] = useState([]);
   let [first,setfirst]= useState(false)
   let settimeoutid=useRef(null);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getProductData())
+    dispatch(getnavadData())
+    dispatch(getImageSliderData())
+  })
   const fetched = async () =>{
     const result =await fetchnavbarAddata();
     setAddata(result) 
   }
-
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -133,15 +133,13 @@ function closeModal3() {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
+    // references are sync'd and can be accessed.
     subtitle.style.color = '#f00';
   }
 
   function closeModal() {
     setIsOpen(false);
   }
-
-
   useEffect(() => {
     fetched()
   }, []);
@@ -156,14 +154,13 @@ function closeModal3() {
   const [open, setOpen] = useState(false);
   const onCloseModal = () => setOpen(false);
   const onOpenModal = () => setOpen(true);
-// const setfalse = ( ) =>{l
+// const setfalse = () =>{
 // }
   return (
     <>
       <NavbarCss>
         <GiHamburgerMenu size={25} style={{ cursor: "pointer" }} 
-        
-        onClick={openModal}        
+        onClick={openModal}
         />
         <Logo>
           <img src={logo} />
