@@ -19,6 +19,7 @@ import Login from "../Login/Login"
 import { useDispatch } from "react-redux";
 import { getImageSliderData, getnavadData, getProductData } from "../../redux/HomePage/HomePage.action";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 
 const customStyles = {
@@ -64,6 +65,16 @@ const customStyles3 = {
 
 
 const Navbar = () => {
+  let navigate =useNavigate()
+  let dispatch = useDispatch();
+  // useEffect(()=>{
+    // dispatch(getProductData())
+    dispatch(()=>{
+      getnavadData()
+    })
+    dispatch(getImageSliderData())
+
+
   const [modalIsOpen1, setIsOpen1] = React.useState(false);
 
   function openModal1() {
@@ -112,19 +123,19 @@ function closeModal3() {
   setIsOpen3(false);
 }
   //hii
-  let [Addata,setAddata] = useState([]);
+  // let [Addata,setAddata] = useState([]);
   let [first,setfirst]= useState(false)
   let settimeoutid=useRef(null);
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getProductData())
-    dispatch(getnavadData())
-    dispatch(getImageSliderData())
-  })
-  const fetched = async () =>{
-    const result =await fetchnavbarAddata();
-    setAddata(result) 
-  }
+    // dispatch(getImageSliderData())
+  // })
+  let ata = useSelector((state)=>state.HomePageReducer ) || []
+    console.log(ata)
+  let Addata = useSelector((state)=>state.HomePageReducer.addData.data ) || []
+  console.log(Addata)
+  // const fetched = async () =>{
+  //   const result =await fetchnavbarAddata();
+  //   setAddata(result) 
+  // }
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -140,9 +151,9 @@ function closeModal3() {
   function closeModal() {
     setIsOpen(false);
   }
-  useEffect(() => {
-    fetched()
-  }, []);
+  // useEffect(() => {
+  //   fetched()
+  // }, []);
   let settings = {
     autoplay: true,
     autoplaySpeed: 1000,
@@ -154,15 +165,18 @@ function closeModal3() {
   const [open, setOpen] = useState(false);
   const onCloseModal = () => setOpen(false);
   const onOpenModal = () => setOpen(true);
-// const setfalse = () =>{
-// }
+
+  const handleClick = () =>{
+    navigate('/');
+  }
+
   return (
     <>
       <NavbarCss>
         <GiHamburgerMenu size={25} style={{ cursor: "pointer" }} 
         onClick={openModal}
         />
-        <Logo>
+        <Logo onClick={handleClick}>
           <img src={logo} />
           <p>Biverty</p>
         </Logo>

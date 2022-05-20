@@ -1,13 +1,20 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 import img from './../../image/photo.jpg'
 import { ProductBoxcss ,Imagebox, Details, Size } from './ProductBox.style'
 
 const ProductBox = ({val=[]}) => {
     console.log(val.pImages[0])
+    let navigate = useNavigate()
+    const handleClick = (id) =>{
+        navigate(`/products/${id}`);
+    }
   return (
       <>
       {val.length==0?"":
-      <ProductBoxcss>
+      <ProductBoxcss onClick={()=>{
+          handleClick(val._id)
+      }}>
           <Imagebox>
               <img src={`/img/Basics.jpg`} alt="" />
           </Imagebox>

@@ -1,6 +1,7 @@
 import { FETCH_SINGLEPRODUCT_DATA_FAILURE, FETCH_SINGLEPRODUCT_DATA_SUCCESS } from "./SinglePage.types";
 
 import axios from "axios";
+const BASE_URL ="https://saviorclothes.herokuapp.com"
 
 export const getSingleData = (id) => async(dispatch) =>{
     try {

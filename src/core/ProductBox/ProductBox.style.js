@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const ProductBoxcss = styled.div`
 width: 340px;
-
+cursor: pointer;
 `
 export const Imagebox = styled.div`
     position: relative;
     img{
         width:340px;
-
     }
     button{
     
