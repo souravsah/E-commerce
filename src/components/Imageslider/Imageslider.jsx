@@ -6,6 +6,7 @@ import { sliderAddata } from '../../api/imageslider'
 import { useState } from "react";
 import { Imageslidercss } from "./Imageslidercss.style";
 import { getImageSliderData } from "../../redux/HomePage/HomePage.action";
+import { useDispatch, useSelector } from "react-redux";
 
 const Imageslider = () => {
   // let [Addata,setAddata]= useState([])
@@ -15,7 +16,7 @@ const Imageslider = () => {
     dispatch(()=>{
       getImageSliderData()
     })
-  let Addata = useSelector((state)=>state.HomePageReducer.imagesliderData) || []
+  let Addata = useSelector((state)=>state.HomePageReducer.imagesliderData.data) || []
 
 
 

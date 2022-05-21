@@ -13,7 +13,6 @@ let dispatch =useDispatch()
 let data = useSelector((state)=>state.HomePageReducer.productData)
 dispatch(  getProductData());
 dispatch(getnavadData())
-
   return (
     <div>
     <Heading>New Arrivals</Heading>
